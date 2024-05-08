@@ -1,15 +1,16 @@
-function removeNthFromEnd(head, n) {
-  const dummy = new ListNode(0);
-  dummy.next = head;
-  let first = dummy;
-  let second = dummy;
-  for (let i = 0; i <= n; i++) {
-    first = first.next;
+function numDecodings(s) {
+  const dp = new Array(s.length + 1).fill(0);
+  dp[0] = 1;
+  dp[1] = s[0] === "0" ? 0 : 1;
+  for (let i = 2; i <= s.length; i++) {
+    const oneDigit = parseInt(s.substring(i - 1, i));
+    const twoDigits = parseInt(s.substring(i - 2, i));
+    if (oneDigit >= 1) {
+      dp[i] += dp[i - 1];
+    }
+    if (twoDigits >= 10 && twoDigits <= 26) {
+      dp[i] += dp[i - 2];
+    }
   }
-  while (first !== null) {
-    first = first.next;
-    second = second.next;
-  }
-  second.next = second.next.next;
-  return dummy.next;
+  return dp[s.length];
 }
