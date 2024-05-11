@@ -1,3 +1,3 @@
-const lcmRecursive = (a, b) => {
-  return (a * b) / gcdRecursive(a, b);
-};
+// Setup the client
+const aptosConfig = new AptosConfig({ network: APTOS_NETWORK });
+const aptos = new Aptos(aptosConfig);
